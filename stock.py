@@ -1,4 +1,4 @@
-#! /Users/wenhaowu/Documents/P3_stock/bin/python
+#! ~/p3/bin/python
 import yfinance as yf
 
 # print (help(yf))
