@@ -1,42 +1,38 @@
-#! /Users/wenhaowu/Documents/P3_stock/bin/python
+#!/Users/wenhaowu/p3/bin/python
 import yfinance as yf
+from pprint import pprint
+msft = yf.Ticker("PVTL")
 
-# print (help(yf))
 
-stock = yf.Ticker("SE")
-# for one in (dir(stock)):
-#      print (one)
-# print (help(stock.dividends))
-# print (stock.info)
-for key in dict(stock.info):
-     print("{}, {}".format(key,dict(stock.info)[key]))
-     # print (key),(dict(stock.info)[key])
+# # get stock info
+# pprint (msft.info)
 
 # get historical market data
-# print (stock.history(period="max"))
+# hist = msft.history(period="max")
+
+pprint (help(msft.history()))
 
 # # show actions (dividends, splits)
-# print (stock.actions)
+# msft.actions
 
-# # # show dividends
-# print (type(stock.dividends))
+# # show dividends
+# msft.dividends
 
-# # # show splits
-# print (type(stock.splits))
+# # show splits
+# msft.splits
 
-# # # show financials
-# print (type(stock.financials))
+# # show financials
+# msft.financials
 
-# # # show balance heet
-# print (type(stock.balance_sheet))
+# # show balance heet
+# msft.balance_sheet
 
-# # # show cashflow
-# print (type(stock.cashflow))
+# # show cashflow
+# msft.cashflow
 
 # # show options expirations
-# print (stock.options)
+# msft.options
 
 # # get option chain for specific expiration
-# opt = stock.option_chain('2019-02-02')
-# print (opt.calls)
+# opt = msft.option_chain('YYYY-MM-DD')
 # # data available via: opt.calls, opt.puts
