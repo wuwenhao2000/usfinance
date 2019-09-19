@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/Users/wenhaowu/p3/bin/python
+=======
+#! ~/p3/bin/python
+>>>>>>> 4758bc5d3764bb002a5ed4267fab0a33ba373367
 import yfinance as yf
 from pprint import pprint
 msft = yf.Ticker("PVTL")
