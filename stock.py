@@ -1,37 +1,36 @@
 #!/Users/wenhaowu/p3/bin/python
 import yfinance as yf
-from pprint import pprint
-msft = yf.Ticker("PVTL")
+import numpy
+import pandas
+import pprint
+# msft = yf.Ticker("PVTL")
 
-
-# # get stock info
+# get stock info
 # pprint (msft.info)
 
 # get historical market data
-# hist = msft.history(period="max")
+# stock = msft.history(period="max")
+# print (stock)
 
-pprint (help(msft.history()))
-
-# # show actions (dividends, splits)
-# msft.actions
+# stock.to_excel("PVTL-20190920.xlsx",index=True) # save the df as Excel file without its index written
 
 # # show dividends
-# msft.dividends
+# print(msft.dividends)
 
 # # show splits
-# msft.splits
+# print(msft.splits)
 
 # # show financials
-# msft.financials
+# print((msft.financials))
 
-# # show balance heet
-# msft.balance_sheet
+# # show balance sheet
+# print(msft.balance_sheet)
 
 # # show cashflow
-# msft.cashflow
+# print(msft.cashflow)
 
 # # show options expirations
-# msft.options
+# print(msft.options)
 
 # # get option chain for specific expiration
 # opt = msft.option_chain('YYYY-MM-DD')
