@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/Users/wewu/p3/bin/python
 # PE means using all values / earning value
 import yfinance as yf
@@ -33,33 +34,52 @@ df = stock.history(period="max")
 # for key in dict(stock.info):
 #      print("{}, {}".format(key,dict(stock.info)[key]))
 #      # print (key),(dict(stock.info)[key])
+=======
+#!/Users/wenhaowu/p3/bin/python
+import yfinance as yf
+import numpy
+import pandas
+import pprint
+# msft = yf.Ticker("PVTL")
+>>>>>>> ee9118e5411d3b7be35d23595ab8cd78909a95a3
+
+# get stock info
+# pprint (msft.info)
 
 # get historical market data
-# print (stock.history(period="max"))
+# stock = msft.history(period="max")
+# print (stock)
 
-# # show actions (dividends, splits)
-# print (stock.actions)
+# stock.to_excel("PVTL-20190920.xlsx",index=True) # save the df as Excel file without its index written
 
+# # show dividends
+# print(msft.dividends)
 
-# # # show dividends
-# print (type(stock.dividends))
+# # show splits
+# print(msft.splits)
 
-# # # show splits
-# print (type(stock.splits))
-
+<<<<<<< HEAD
 # # # show financials
 # print (stock.financials)
 
 # # # show balance heet
 # print (stock.balance_sheet)
+=======
+# # show financials
+# print((msft.financials))
 
-# # # show cashflow
-# print (type(stock.cashflow))
+# # show balance sheet
+# print(msft.balance_sheet)
+>>>>>>> ee9118e5411d3b7be35d23595ab8cd78909a95a3
+
+# # show cashflow
+# print(msft.cashflow)
 
 # # show options expirations
-# print (stock.options)
+# print(msft.options)
 
 # # get option chain for specific expiration
+<<<<<<< HEAD
 # opt = stock.option_chain('2019-02-02')
 # print (opt.calls)
 # # data available via: opt.calls, opt.puts
@@ -88,3 +108,7 @@ df['PE%'] = (df['trailingPE'] - df['trailingPE'].min())/(df['trailingPE'].max()-
 df['Regular%'] = (df['Close'] - df['Close'].min())/(df['Close'].max()-df['Close'].min())
 print (df[df['Date']>'2018-08-21'][['Date','Close','trailingPE','PE%','Regular%']])
 
+=======
+# opt = msft.option_chain('YYYY-MM-DD')
+# # data available via: opt.calls, opt.puts
+>>>>>>> ee9118e5411d3b7be35d23595ab8cd78909a95a3
