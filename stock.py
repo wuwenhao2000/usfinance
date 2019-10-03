@@ -1,15 +1,31 @@
 #!/Users/wewu/p3/bin/python
+# PE means using all values / earning value
 import yfinance as yf
 import numpy
-import pandas 
+import pandas as pd
 import pprint
-# print (help(yf))
-# print (dir(yf))
-stock = yf.Ticker("SE")
-# pprint.pprint(stock.info)
+import time
+stock = yf.Ticker("PVTL")
+# pprint.pprint (stock.info)
+# print (stock.info['marketCap'])
+# print (stock.info['sharesOutstanding'])
+# print (stock.info['regularMarketPrice'])
+# print (stock.info['epsTrailingTwelveMonths'])
+# print (stock.info['epsForward'])
+# print (stock.info['forwardPE'])
+# # print (stock.info['trailingPE'])
+df = stock.history(period="max")
+# print (sample)
+
+# sample.to_excel("SE.xlsx",index=False) # save the df as Excel file without its index written
+# sample.to_excel("SE2.xlsx") # save the df as Excel file without its index written
+
+# print (pd.read_excel('SE2.xlsx',sheet_name='Sheet1')) # read the Excel as the pd
+
+# df.to_excel("SE.xlsx",index=False) # save the df as Excel file without its index written
+
 # print (stock.history(period="max").tail(5))
-print (stock.dividends)
-# print (help(stock.history))
+# print (stock.dividends)
 # for one in (dir(stock)):
 #      print (one)
 # print (help(stock.dividends))
@@ -32,10 +48,10 @@ print (stock.dividends)
 # print (type(stock.splits))
 
 # # # show financials
-# print (type(stock.financials))
+# print (stock.financials)
 
 # # # show balance heet
-# print (type(stock.balance_sheet))
+# print (stock.balance_sheet)
 
 # # # show cashflow
 # print (type(stock.cashflow))
@@ -47,3 +63,28 @@ print (stock.dividends)
 # opt = stock.option_chain('2019-02-02')
 # print (opt.calls)
 # # data available via: opt.calls, opt.puts
+
+# df =  (pd.read_excel('SE3.xlsx')) # read the Excel as the pd
+# df.to_excel("SE3.xlsx") # save the df as Excel file without its index written
+
+# print (df)
+# print (df[['Date','Close']])
+# df.drop(['Unnamed: 0'],axis=1,inplace=True) # the operation default is temporary, if you want operation permanent, SET inplace=True
+# print (df[['Date','Close','trailingPE','Volume']])
+
+# df['Volume%'] = (df['Volume'] - df['Volume'].min())/(df['Volume'].max()-df['Volume'].min())
+# df['max'] = df['trailingPE'].max()
+# df['min'] = df['trailingPE'].min()
+# print (df['trailingPE'].max())
+# print (df['trailingPE'].min())
+# print (df[['Date','Close','trailingPE','PE%','Regular%']])
+# print (df[df['trailingPE'] ==df['trailingPE'].max()])
+# print (df[df['trailingPE'] ==df['trailingPE'].min()])
+# print (df[df['Date']>'2018-08-21'])[['Date','Close','trailingPE','PE%','Regular%']]
+
+# print (df)
+df['trailingPE'] = df['Close']/stock.info['epsTrailingTwelveMonths']
+df['PE%'] = (df['trailingPE'] - df['trailingPE'].min())/(df['trailingPE'].max()-df['trailingPE'].min())
+df['Regular%'] = (df['Close'] - df['Close'].min())/(df['Close'].max()-df['Close'].min())
+print (df[df['Date']>'2018-08-21'][['Date','Close','trailingPE','PE%','Regular%']])
+
