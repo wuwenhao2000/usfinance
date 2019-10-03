@@ -6,8 +6,13 @@
 # print (time.ctime(1567641600))
 # print (time.strftime("%Y%m%d%H%M%S", time.localtime()))
 import os
-stock_file = "SE"
-if not os.path.exists(stock_file):
-  os.mkdir(stock_file)
-else:
-  print ('it has')
+import json
+import time
+import pprint
+one = "SE"
+json_file = "{}_{}.json".format(one,time.strftime("%Y%m%d", time.localtime())) # today's variable file
+target_json = "{}/{}".format(one,json_file) # today's variable file with relative path
+
+with open(target_json,'r') as load_f: # get the variable from .json file
+  curr_var = json.loads(json.dumps(eval(load_f.read()))) # transfer the variable from string -> json -> dict
+pprint.pprint (curr_var)
