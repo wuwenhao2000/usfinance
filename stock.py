@@ -1,5 +1,3 @@
-#!/Users/wewu/p3/bin/python
-# PE means using all values / earning value
 import yfinance as yf
 import numpy
 import pandas as pd
