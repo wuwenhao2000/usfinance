@@ -1,14 +1,16 @@
 import yfinance as yf
 import numpy as np
 import pandas as pd
-import matplotlib
-import seaborn
+from matplotlib import pyplot as plt
+import seaborn as sns
 import pprint
 import time
 import json
 import os
+import sys
 
-one = 'SE' # set the corresponding stock
+# get the corresponding stock from input
+one = sys.argv[1].upper()
 
 # variables setting block
 history_file = "{}_{}.xlsx".format(one,time.strftime("%Y%m%d", time.localtime())) # today's history file
@@ -33,10 +35,38 @@ with open(target_json,'r') as load_f: # get the variable from .json file
 
 # data analysis block
 # df['eps'] = stock.info['epsTrailingTwelveMonths']
-df['eps'] = curr_var['epsTrailingTwelveMonths'] # get the eps
-df['trailingPE'] = df['Close']/df['eps'] # calculate new column "trailingPE = Close/eps"
-df['PE%'] = (df['trailingPE'] - df['trailingPE'].min())/(df['trailingPE'].max()-df['trailingPE'].min())*(100) # calculate PE%
+df['book'] = curr_var['bookValue'] # get the book value
+df['PB'] = df['Close']/df['book'] # calculate new column "trailingPB = Close/book"
+df['PB%'] = (df['PB'] - df['PB'].min())/(df['PB'].max()-df['PB'].min())*(100) # calculate PB%
 df['Regular%'] = (df['Close'] - df['Close'].min())/(df['Close'].max()-df['Close'].min())*(100) # calculate Regular%
-# print (df[df['Date']>time.ctime(stock.info['earningsTimestamp'])][['Date','Close','eps','trailingPE','PE%','Regular%',]])
-print (df[['Date','Close','trailingPE','PE%','Regular%']])
-# print (df)
+df['Rollback%'] = (df['Close'].max() - df['Close'])/df['Close'].max()*(100) # calculate Regular%
+
+if int(curr_var['epsTrailingTwelveMonths'])>0: # when eps is grater than 0
+  df['eps'] = curr_var['epsTrailingTwelveMonths'] # get the eps
+  df['PE'] = df['Close']/df['eps'] # calculate new column "PE = Close/eps"
+  df['PE%'] = (df['PE'] - df['PE'].min())/(df['PE'].max()-df['PE'].min())*(100) # calculate PE%
+  df=df[['Date','Close','PB','PB%','PE','PE%','Rollback%']] # get the result of all history
+else: # when eps is less than 0
+  df=df[['Date','Close','PB','PB%','Rollback%']] # get the result of all history
+
+# print (df[>time.ctime(curr_var['earningsTimestamp'])][['Date','Close','eps','trailingPE','PE%','Regular%',]]) # get the result from earningsTimestamp
+# print (df[['Date','Close','trailingPB','trailingPE','PE%','PB%','Regular%']]) # get the result of all history
+# print (df[df['Close'] == df['Close'].max()])
+
+
+# create the coordinate based on above data
+if sys.argv[2].upper()=='Y':
+  x = df['Date'] # set x axis variable
+  y = df['PB%'] # set y axis variable
+  plt.title("PB% vs Time") # set picture title
+  plt.xlabel("Time") # set x axis label
+  plt.ylabel("PB") # set y axis label
+  plt.plot(x,y) # create the coordinate
+  plt.show() # show the coordinate
+
+else:
+  print (df)
+
+# sns.set_style("whitegrid")  
+# plt.plot(np.arange(10))  
+# plt.show()
