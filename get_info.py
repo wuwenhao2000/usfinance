@@ -55,7 +55,7 @@ else: # when eps is less than 0
 
 
 # create the coordinate based on above data
-if sys.argv[2].upper()=='Y':
+if sys.argv[2].upper()=='Y': # if Y, then show the picture
   x = df['Date'] # set x axis variable
   y = df['PB%'] # set y axis variable
   plt.title("PB% vs Time") # set picture title
@@ -64,7 +64,7 @@ if sys.argv[2].upper()=='Y':
   plt.plot(x,y) # create the coordinate
   plt.show() # show the coordinate
 
-else:
+else: # else, then show the dataframe
   print (df)
 
 # sns.set_style("whitegrid")  
