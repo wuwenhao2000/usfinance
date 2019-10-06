@@ -4,6 +4,22 @@ import json
 import time
 import pprint
 import yfinance as yf
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+# x = np.linspace(0, 2, 100)
+
+# plt.plot(x, x, label='linear')
+# plt.plot(x, x**2, label='quadratic')
+# plt.plot(x, x**3, label='cubic')
+
+# plt.xlabel('x label')
+# plt.ylabel('y label')
+# plt.title("Simple Plot")
+
+# plt.legend()
+
+# plt.show()
 # abc = {1:'abc',2:'def'}
 # print (abc[1])
 # import time
@@ -15,15 +31,27 @@ import yfinance as yf
 # print (sys.argv[0].upper())
 
 one = (sys.argv[1].upper())
-json_file = "{}_{}.json".format(one,time.strftime("%Y%m%d", time.localtime())) # today's variable file
-target_json = "{}/{}".format(one,json_file) # today's variable file with relative path
-with open(target_json,'r') as load_f: # get the variable from .json file
-  curr_var = json.loads(json.dumps(eval(load_f.read()))) # transfer the variable from string -> json -> dict
-pprint.pprint (curr_var)
+# json_file = "{}_{}.json".format(one,time.strftime("%Y%m%d", time.localtime())) # today's variable file
+# target_json = "{}/{}".format(one,json_file) # today's variable file with relative path
+# with open(target_json,'r') as load_f: # get the variable from .json file
+#   curr_var = json.loads(json.dumps(eval(load_f.read()))) # transfer the variable from string -> json -> dict
+# pprint.pprint (curr_var)
 
 
 # stock = yf.Ticker(one)
-# pprint.pprint (stock.info['regularMarketPrice'])
+# pprint.pprint (stock.financials)
+# pprint.pprint (stock.balance_sheet)
+# pprint.pprint (stock.cashflow)
+# pprint.pprint (stock.options)
+
+
+# tickers = yf.Tickers('msft aapl goog')
+# # ^ returns a named tuple of Ticker objects
+
+# # access each ticker using (example)
+# tickers.msft.info
+# tickers.aapl.history(period="1mo")
+# tickers.goog.actions
 
 # pprint.pprint (stock.info['bookValue'])
 # pprint.pprint (stock.info['priceToBook'])
