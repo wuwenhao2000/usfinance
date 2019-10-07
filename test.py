@@ -4,6 +4,7 @@ import json
 import time
 import pprint
 import yfinance as yf
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -30,8 +31,12 @@ import matplotlib.pyplot as plt
 
 # print (sys.argv[0].upper())
 
+
 # one = (sys.argv[arg*].upper())
 
+# one = (sys.argv[1].upper())
+
+# one = (sys.argv[1].upper())
 # json_file = "{}_{}.json".format(one,time.strftime("%Y%m%d", time.localtime())) # today's variable file
 # target_json = "{}/{}".format(one,json_file) # today's variable file with relative path
 # with open(target_json,'r') as load_f: # get the variable from .json file
@@ -81,9 +86,16 @@ print (stock.balance_sheet)
  'postMarketTime': 1570222788,
  'regularMarketTime': 1570219287,
 '''
-# print (time.ctime(1571097600))
-# print (time.ctime(1565049600))
-# print (time.ctime(1572886800))
-# print (time.ctime(1572361140))
-# print (time.ctime(1570222788))
-# print (time.ctime(1570219287))
+
+# fig = plt.figure(num=1, figsize=(15, 8),dpi=80) 
+# fig = plt.figure()
+plt.plot(np.arange(0,1,0.1),range(0,10,1),label='abc',color='green',lw=1,ls='-.')
+plt.plot(np.arange(0,1,0.1),range(0,20,2),label='def',color='purple',lw=3,ls='--')
+plt.title("PB% vs Time")
+plt.xlabel("Time")
+plt.ylabel("Value")
+# plt.set_xlim([0,0.2])
+# plt.set_lim([0,5])
+
+plt.legend()
+plt.show()
