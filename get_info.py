@@ -64,6 +64,13 @@ if sys.argv[2].upper()=='Y': # if Y, then show the picture
   plt.plot(x,y) # create the coordinate
   plt.show() # show the coordinate
 
+  # # fig = plt.figure(num=1, figsize=(15, 8),dpi=80) 
+# fig = plt.figure() 
+
+# plt.plot(np.arange(0,1,0.1),range(0,10,1))
+# plt.plot(np.arange(0,1,0.1),range(0,20,2))
+# plt.show()
+
 else: # else, then show the dataframe
   print (df)
 
