@@ -30,7 +30,8 @@ import matplotlib.pyplot as plt
 
 # print (sys.argv[0].upper())
 
-one = (sys.argv[1].upper())
+# one = (sys.argv[arg*].upper())
+
 # json_file = "{}_{}.json".format(one,time.strftime("%Y%m%d", time.localtime())) # today's variable file
 # target_json = "{}/{}".format(one,json_file) # today's variable file with relative path
 # with open(target_json,'r') as load_f: # get the variable from .json file
@@ -38,14 +39,30 @@ one = (sys.argv[1].upper())
 # pprint.pprint (curr_var)
 
 
-# stock = yf.Ticker(one)
-# pprint.pprint (stock.financials)
-# pprint.pprint (stock.balance_sheet)
+stock = yf.Ticker('SKYY')
+
+pprint.pprint (stock.info)
+print (stock.balance_sheet)
 # pprint.pprint (stock.cashflow)
 # pprint.pprint (stock.options)
 
-
 # tickers = yf.Tickers('msft aapl goog')
+# # ^ returns a named tuple of Ticker objects
+
+# # access each ticker using (example)
+# tickers.msft.info
+# tickers.aapl.history(period="1mo")
+# tickers.goog.actions
+
+# sys.argv.pop(0)
+# stocks = (' ').join(sys.argv)
+# tickers = yf.Tickers('SE O')
+# print (tickers.SE.info)
+# print (help(yf.download))
+# for one in sys.argv:
+#   print (one)
+#   # print (tickers.one.info['epsTrailingTwelveMonths'])
+#   print (tickers.SE.info['epsTrailingTwelveMonths'])
 # # ^ returns a named tuple of Ticker objects
 
 # # access each ticker using (example)
