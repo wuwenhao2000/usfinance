@@ -69,15 +69,26 @@ import matplotlib.pyplot as plt
  'regularMarketTime': 1570219287,
 '''
 
-# fig = plt.figure(num=1, figsize=(15, 8),dpi=80) 
-# fig = plt.figure()
-plt.plot(np.arange(0,1,0.1),range(0,10,1),label='abc',color='green',lw=1,ls='-.')
-plt.plot(np.arange(0,1,0.1),range(0,20,2),label='def',color='purple',lw=3,ls='--')
-plt.title("PB% vs Time")
-plt.xlabel("Time")
-plt.ylabel("Value")
-# plt.set_xlim([0,0.2])
-# plt.set_lim([0,5])
+#############################
+# plt.plot(np.arange(0,1,0.1),range(0,10,1),label='abc',color='green',lw=1,ls='-.')
+# plt.plot(np.arange(0,1,0.1),range(0,20,2),label='def',color='purple',lw=3,ls='--')
+# plt.title("PB% vs Time")
+# plt.xlabel("Time")
+# plt.ylabel("Value")
+# plt.legend()
+# plt.show()
 
-plt.legend()
-plt.show()
+#############################
+
+
+# fig = plt.figure() 
+# ax = fig.add_axes([0,0,1,1])
+# ax2 = fig.add_axes([0.5,0.5,0.4,0.4])
+
+# ax.plot(np.arange(0,1,0.1),range(0,10,1))
+# ax.set_xlabel('x')
+# ax.set_ylabel('y')
+
+# # plt.set_xlim([0,0.2])
+# # plt.set_lim([0,5])
+# #g.show()
