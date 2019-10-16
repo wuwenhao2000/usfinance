@@ -4,26 +4,21 @@ import json
 import time
 import pprint
 import yfinance as yf
-
+import socket
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-# x = np.linspace(0, 2, 100)
-
-# plt.plot(x, x, label='linear')
-# plt.plot(x, x**2, label='quadratic')
-# plt.plot(x, x**3, label='cubic')
-
-# plt.xlabel('x label')
-# plt.ylabel('y label')
-# plt.title("Simple Plot")
-
-# plt.legend()
-
-# plt.show()
-# abc = {1:'abc',2:'def'}
-# print (abc[1])
-# import time
+import time
+from datetime import timedelta
+from datetime import datetime
+tss1 = '2013-10-10 23:40:00'
+# dt = datetime.now()
+# dt = dt.replace(year=dt.year-3)
+# print (dt)
+# ss = datetime.datetime.now() - datetime.timedelta(days=1*365)
+# print (ss)
+now = datetime.now()+ timedelta(days=-365)
+print (now.strftime("%Y-%m-%d"))
 # print (time.ctime(1567641600)) # earnings
 # print (time.ctime(1567641600))
 # print (time.ctime(1567641600))
@@ -86,16 +81,3 @@ print (stock.balance_sheet)
  'postMarketTime': 1570222788,
  'regularMarketTime': 1570219287,
 '''
-
-# fig = plt.figure(num=1, figsize=(15, 8),dpi=80) 
-# fig = plt.figure()
-plt.plot(np.arange(0,1,0.1),range(0,10,1),label='abc',color='green',lw=1,ls='-.')
-plt.plot(np.arange(0,1,0.1),range(0,20,2),label='def',color='purple',lw=3,ls='--')
-plt.title("PB% vs Time")
-plt.xlabel("Time")
-plt.ylabel("Value")
-# plt.set_xlim([0,0.2])
-# plt.set_lim([0,5])
-
-plt.legend()
-plt.show()

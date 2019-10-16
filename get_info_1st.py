@@ -56,12 +56,14 @@ else: # when eps is less than 0
 
 # create the coordinate based on above data
 if sys.argv[2].upper()=='Y': # if Y, then show the picture
-  x = df['Date'] # set x axis variable
-  y = df['PB%'] # set y axis variable
-  plt.title("PB% vs Time") # set picture title
+  # x = df['Date'] # set x axis variable
+  # y = df['PB%'] # set y axis variable
+  # plt.title("PB% vs Time") # set picture title
   plt.xlabel("Time") # set x axis label
-  plt.ylabel("PB") # set y axis label
-  plt.plot(x,y) # create the coordinate
+  # plt.ylabel("PB") # set y axis label
+  plt.plot(df['Date'],df['PB%'],label='PB%',color='green',lw=1) # create the coordinate
+  plt.plot(df['Date'],df['Rollback%'],label='Max drawdown',color='purple',lw=1,ls='--')
+  plt.legend()
   plt.show() # show the coordinate
 
   # # fig = plt.figure(num=1, figsize=(15, 8),dpi=80) 
@@ -72,7 +74,8 @@ if sys.argv[2].upper()=='Y': # if Y, then show the picture
 # plt.show()
 
 else: # else, then show the dataframe
-  print (df)
+  print (df[df['Date']=='2019-10-08'])
+  # print (df)
 
 # sns.set_style("whitegrid")  
 # plt.plot(np.arange(10))  
