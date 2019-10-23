@@ -1,4 +1,3 @@
-import yfinance as yf
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -8,41 +7,65 @@ import time
 import json
 import os
 import sys
+from pandas_datareader import data,wb
 from datetime import timedelta
 from datetime import datetime
 # import datetime
-# get the corresponding stock from input
-one = sys.argv[1].upper()
 
-# variables setting block
-history_file = "{}_{}.xlsx".format(one,time.strftime("%Y%m%d", time.localtime())) # today's history file
-target_file = "{}/{}".format(one,history_file) # today's history file with relative path
-json_file = "{}_{}.json".format(one,time.strftime("%Y%m%d", time.localtime())) # today's variable file
-target_json = "{}/{}".format(one,json_file) # today's variable file with relative path
+# beginning date of stock dataframe analysis
+date = '2018-01-01'
 
-# read the local files block
-df = pd.read_excel(target_file) # get the stock history from .xlsx file
-with open(target_json,'r') as load_f: # get the variable from .json file
-  curr_var = json.loads(json.dumps(eval(load_f.read()))) # transfer the variable from string -> json -> dict
+# the list of stocks
+stock_list = ['O','BXP','HCP','VNQ']
 
-dfnew = df[['Date','Close']]
-dfold = df[['Date','Close']]
-dfnew['new_time'] = dfnew['Date']-timedelta(days=365)
-dfold['new_time'] = df['Date']
-# print (dfnew)
-# print (dfold)
-df_combine = pd.merge(dfnew,dfold,how='inner',on='new_time').drop(['new_time','Date_y'],axis=1)
-print (df_combine)
-df_combine['eps'] = df_combine['Close_x']-df_combine['Close_y']
-print (df_combine)
+for one in stock_list:
+  # variables setting block
+  history_file = "{}_{}.xlsx".format(one,time.strftime("%Y%m%d", time.localtime())) # today's history file
+  target_file = "{}/{}".format(one,history_file) # today's history file with relative path
+  json_file = "{}_{}.json".format(one,time.strftime("%Y%m%d", time.localtime())) # today's variable file
+  target_json = "{}/{}".format(one,json_file) # today's variable file with relative path
+  if one=='O':df_O = pd.read_excel(target_file) # get the stock history from .xlsx file
+  elif one=='BXP':df_BXP = pd.read_excel(target_file) # get the stock history from .xlsx file
+  elif one=='HCP':df_HCP = pd.read_excel(target_file) # get the stock history from .xlsx file
+  elif one=='VNQ':df_VNQ = pd.read_excel(target_file) # get the stock history from .xlsx file
 
-plt.plot(df_combine['Date_x'],df_combine['Close_x'],label='Close',color='purple',lw=2) # set the coordinate
-plt.plot(df_combine['Date_x'],df_combine['eps'],label='esp',color='blue',lw=2) # set the coordinate
-plt.title("Close vs esp") # chart title
-plt.ylabel("parameter") # Y axis label
-plt.xlabel("Time")  # X axis label
-plt.legend()
-plt.show()
+df_O = df_O[df_O['Date']>=date]
+df_BXP = df_BXP[df_BXP['Date']>=date]
+df_HCP = df_HCP[df_HCP['Date']>=date]
+df_VNQ = df_VNQ[df_VNQ['Date']>=date]
+
+df_O.set_index('Date',inplace=True)
+df_BXP.set_index('Date',inplace=True)
+df_HCP.set_index('Date',inplace=True)
+df_VNQ.set_index('Date',inplace=True)
+
+df = pd.concat([df_O,df_BXP,df_HCP,df_VNQ],axis=1,keys=stock_list)
+print (df.head())
+# 'print (df.xs(1,level="Close",axis=1))'
+# df.plot.line(x=df.index,y='Close',figsize=(12,3),lw=1)
+  # read the local files block
+# with open(target_json,'r') as load_f: # get the variable from .json file
+#   curr_var = json.loads(json.dumps(eval(load_f.read()))) # transfer the variable from string -> json -> dict
+
+# print (df[df['Date']> '2017-01-01'])
+# dfnew = df[['Date','Close']]
+# dfold = df[['Date','Close']]
+# dfnew['new_time'] = dfnew['Date']-timedelta(days=365)
+# dfold['new_time'] = df['Date']
+# # print (dfnew)
+# # print (dfold)
+# df_combine = pd.merge(dfnew,dfold,how='inner',on='new_time').drop(['new_time','Date_y'],axis=1)
+# print (df_combine)
+# df_combine['eps'] = df_combine['Close_x']-df_combine['Close_y']
+# print (df_combine)
+
+# plt.plot(df_combine['Date_x'],df_combine['Close_x'],label='Close',color='purple',lw=2) # set the coordinate
+# plt.plot(df_combine['Date_x'],df_combine['eps'],label='esp',color='blue',lw=2) # set the coordinate
+# plt.title("Close vs esp") # chart title
+# plt.ylabel("parameter") # Y axis label
+# plt.xlabel("Time")  # X axis label
+# plt.legend()
+# plt.show()
 # print (df_combine[df_combine['Date_x']=='2018-10-15'])
 # # print (df.head(255))
 
