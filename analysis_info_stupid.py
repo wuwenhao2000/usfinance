@@ -13,7 +13,7 @@ from datetime import datetime
 # import datetime
 
 # beginning date of stock dataframe analysis
-date = '2018-01-01'
+date = '2017-01-01'
 
 # the list of stocks
 stock_list = ['O','BXP','HCP','VNQ']
@@ -40,8 +40,9 @@ df_HCP.set_index('Date',inplace=True)
 df_VNQ.set_index('Date',inplace=True)
 
 df = pd.concat([df_O,df_BXP,df_HCP,df_VNQ],axis=1,keys=stock_list)
-print (df.head())
-# 'print (df.xs(1,level="Close",axis=1))'
+df.columns.names = ['Stock_Name','Stock_INFO']
+# print (df.head())
+print (df.xs(key="Close",level="Stock_INFO",axis=1))
 # df.plot.line(x=df.index,y='Close',figsize=(12,3),lw=1)
   # read the local files block
 # with open(target_json,'r') as load_f: # get the variable from .json file
