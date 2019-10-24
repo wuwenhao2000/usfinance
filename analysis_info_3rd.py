@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pprint
 import datetime
+import plotly
+import cufflinks as cf 
+cf.go_offline
 from pandas_datareader import data,wb
 
 # set the beginning date of stock dataframe analysis
@@ -25,9 +28,9 @@ df = pd.concat([O,BXP,HCP,VNQ],axis=1,keys=stock_list)
 df.columns.names = ['Stock_Name','Stock_INFO']
 # print (df.head())
 
-# df.xs is used to grab the specific values with column(axis=1) or index(axis=0, default) in multi_level index dataframe
-# print (df.xs(key="Close",axis=1,level='Stock_INFO').head())
-# print (df.xs(key="O",axis=1,level='Stock_Name').head())
+# df.xs is used to grab value with specific column(axis=1) or index(axis=0, default) in multi_level index dataframe
+# print (df.xs(key="Close",axis=1,level='Stock_INFO').head()) # get the Close column of all stocks
+# print (df.xs(key="O",axis=1,level='Stock_Name').head()) # get the columns of O
 
 # generate a new dataframe named returns
 returns = pd.DataFrame()
@@ -35,13 +38,33 @@ returns = pd.DataFrame()
 # get the return of each stock, (Pt - P(t-1))/P(t-1) here the method .pct_change() is used percentage change
 for stock in stock_list:
   returns[stock+"_Return"] = df[stock]['Close'].pct_change()
-# print (returns[1:])
+returns = (returns[1:]) # delete the fist row with NaN
+# print (returns.max())
+# print (returns['O_Return'].idxmin()) # the index of the corresponding value
+# print (returns['O_Return'].idxmax()) # the index of the corresponding value
+# print (returns.std()) # standard deviation to test the stability, the less the better
+# print (returns.loc['2019-01-01':].std())
+# sns.distplot(returns.loc['2017-01-01':]['O_Return'],color='green',bins=60)
+# sns.distplot(returns.loc['2017-01-01':]['BXP_Return'],color='blue',bins=60)
+
+# df.xs(key="Close",axis=1,level='Stock_INFO').plot(label=stock) # built-in plot
+# df.xs(key="Close",axis=1,level='Stock_INFO').iplot() # can not be used 
+
+# print (df.xs(('O','Close'),axis=1,level=('Stock_Name','Stock_INFO'))) # get value from multi_index dataframe
+
+# df.xs(key=('O','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean().plot(label='O avg',color='blue')
+# df.xs(key=('O','Close'),axis=1,level=('Stock_Name','Stock_INFO')).plot(label='O Close',color='green')
 
 # generate the sns chart 
 # https://seaborn.pydata.org/generated/seaborn.pairplot.html
-sns.pairplot(returns[1:],diag_kind="kde", markers="+")
+# sns.pairplot(returns,diag_kind="kde", markers="+")
 
-# plt.plot(returns.index, returns['O_Return'],label='O')
-# plt.plot(returns.index, returns['BXP_Return'],label='BXP')
-# plt.legend()
+# plt.plot(df.index, df.xs(('O','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='O AVG')
+# plt.plot(df.index, df.xs(('O','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='O Close')
+
+sns.heatmap(df.xs(key="Close",axis=1,level='Stock_INFO').corr()) # show the correlationship
+# sns.clustermap(df.xs(key="Close",axis=1,level='Stock_INFO').corr(),annot=True)
+
+# heatmap and clustermap must be corr() model
+plt.legend()
 plt.show()
