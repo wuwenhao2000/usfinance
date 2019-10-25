@@ -15,28 +15,26 @@ from datetime import datetime
 # beginning date of stock dataframe analysis
 date = '2010-01-01'
 
-stock_list = ['ftxl','usd','xsd','soxx']
+
+stock_list = ['ivv','voo','spy']
 
 # get the stock history from .xlsx file
-df_ftxl = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='ftxl',b=time.strftime("%Y%m%d", time.localtime())))
-df_usd = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='usd',b=time.strftime("%Y%m%d", time.localtime())))
-df_xsd = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='xsd',b=time.strftime("%Y%m%d", time.localtime())))
-df_soxx = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='soxx',b=time.strftime("%Y%m%d", time.localtime())))
+df_ivv = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='ivv',b=time.strftime("%Y%m%d", time.localtime())))
+df_voo = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='voo',b=time.strftime("%Y%m%d", time.localtime())))
+df_spy = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='spy',b=time.strftime("%Y%m%d", time.localtime())))
 
 # get the beginning time_line
-df_ftxl = df_ftxl[df_ftxl['Date']>=date]
-df_usd = df_usd[df_usd['Date']>=date]
-df_xsd = df_xsd[df_xsd['Date']>=date]
-df_soxx = df_soxx[df_soxx['Date']>=date]
+df_ivv = df_ivv[df_ivv['Date']>=date]
+df_voo = df_voo[df_voo['Date']>=date]
+df_spy = df_spy[df_spy['Date']>=date]
 
 # set the index of dataframe
-df_ftxl.set_index('Date',inplace=True)
-df_usd.set_index('Date',inplace=True)
-df_xsd.set_index('Date',inplace=True)
-df_soxx.set_index('Date',inplace=True)
+df_ivv.set_index('Date',inplace=True)
+df_voo.set_index('Date',inplace=True)
+df_spy.set_index('Date',inplace=True)
 
 # concat multi dataframe into a new one
-df = pd.concat([df_ftxl,df_usd,df_xsd,df_soxx],axis=1,keys=stock_list)
+df = pd.concat([df_ivv,df_voo,df_spy],axis=1,keys=stock_list)
 
 # set the columns for dataframe
 df.columns.names = ['Stock_Name','Stock_INFO']
@@ -78,13 +76,13 @@ returns = (returns[1:]) # delete the fist row with NaN
 # # window=30 the avg value of the Close 
 # plt.plot(df.index, df.xs(('O','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='o AVG')
 # plt.plot(df.index, df.xs(('BXP','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='bxp AVG')
-# plt.plot(df.index, df.xs(('HCP','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='hcp AVG')
+# plt.plot(df.index, df.xs(('spy','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='spy AVG')
 # plt.plot(df.index, df.xs(('VNQ','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='vnq AVG')
 
-plt.plot(df.index, df.xs(('ftxl','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='ftxl')
-plt.plot(df.index, df.xs(('usd','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='usd')
-plt.plot(df.index, df.xs(('xsd','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='xsd')
-plt.plot(df.index, df.xs(('soxx','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='soxx')
+plt.plot(df.index, df.xs(('ivv','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='ivv')
+plt.plot(df.index, df.xs(('voo','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='voo')
+plt.plot(df.index, df.xs(('spy','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='spy')
+# plt.plot(df.index, df.xs(('VNQ','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='VNQ')
 
 plt.legend()
 plt.show()

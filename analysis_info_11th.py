@@ -15,28 +15,29 @@ from datetime import datetime
 # beginning date of stock dataframe analysis
 date = '2010-01-01'
 
-stock_list = ['ftxl','usd','xsd','soxx']
+
+stock_list = ['qtum','ign']
 
 # get the stock history from .xlsx file
-df_ftxl = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='ftxl',b=time.strftime("%Y%m%d", time.localtime())))
-df_usd = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='usd',b=time.strftime("%Y%m%d", time.localtime())))
-df_xsd = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='xsd',b=time.strftime("%Y%m%d", time.localtime())))
-df_soxx = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='soxx',b=time.strftime("%Y%m%d", time.localtime())))
+df_qtum = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='qtum',b=time.strftime("%Y%m%d", time.localtime())))
+df_ign = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='ign',b=time.strftime("%Y%m%d", time.localtime())))
+# df_HCP = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='hcp',b=time.strftime("%Y%m%d", time.localtime())))
+# df_VNQ = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='vnq',b=time.strftime("%Y%m%d", time.localtime())))
 
 # get the beginning time_line
-df_ftxl = df_ftxl[df_ftxl['Date']>=date]
-df_usd = df_usd[df_usd['Date']>=date]
-df_xsd = df_xsd[df_xsd['Date']>=date]
-df_soxx = df_soxx[df_soxx['Date']>=date]
+df_qtum = df_qtum[df_qtum['Date']>=date]
+df_ign = df_ign[df_ign['Date']>=date]
+# df_HCP = df_HCP[df_HCP['Date']>=date]
+# df_VNQ = df_VNQ[df_VNQ['Date']>=date]
 
 # set the index of dataframe
-df_ftxl.set_index('Date',inplace=True)
-df_usd.set_index('Date',inplace=True)
-df_xsd.set_index('Date',inplace=True)
-df_soxx.set_index('Date',inplace=True)
+df_qtum.set_index('Date',inplace=True)
+df_ign.set_index('Date',inplace=True)
+# df_HCP.set_index('Date',inplace=True)
+# df_VNQ.set_index('Date',inplace=True)
 
 # concat multi dataframe into a new one
-df = pd.concat([df_ftxl,df_usd,df_xsd,df_soxx],axis=1,keys=stock_list)
+df = pd.concat([df_qtum,df_ign],axis=1,keys=stock_list)
 
 # set the columns for dataframe
 df.columns.names = ['Stock_Name','Stock_INFO']
@@ -81,10 +82,10 @@ returns = (returns[1:]) # delete the fist row with NaN
 # plt.plot(df.index, df.xs(('HCP','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='hcp AVG')
 # plt.plot(df.index, df.xs(('VNQ','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='vnq AVG')
 
-plt.plot(df.index, df.xs(('ftxl','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='ftxl')
-plt.plot(df.index, df.xs(('usd','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='usd')
-plt.plot(df.index, df.xs(('xsd','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='xsd')
-plt.plot(df.index, df.xs(('soxx','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='soxx')
+plt.plot(df.index, df.xs(('qtum','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='qtum')
+plt.plot(df.index, df.xs(('ign','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='ign')
+# plt.plot(df.index, df.xs(('HCP','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='HCP')
+# plt.plot(df.index, df.xs(('VNQ','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='VNQ')
 
 plt.legend()
 plt.show()
