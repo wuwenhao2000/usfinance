@@ -10,6 +10,12 @@ import sys
 from pandas_datareader import data,wb
 from datetime import timedelta
 from datetime import datetime
+
+# important plot lmplot, distplot, pairplot
+# https://seaborn.pydata.org/generated/seaborn.lmplot.html
+# https://seaborn.pydata.org/generated/seaborn.distplot.html?highlight=sns%20distplot
+# https://seaborn.pydata.org/generated/seaborn.pairplot.html?highlight=sns%20pairplot
+
 # import datetime
 
 # beginning date of stock dataframe analysis
@@ -49,40 +55,102 @@ for stock in stock_list:
   returns[stock+"_Return"] = df[stock]['Close'].pct_change()
 returns = (returns[1:]) # delete the fist row with NaN
 
+
+
+
 # # standard deviation to test the stability, the less the more stable
 # print (returns.std()) 
+
+
+
+
+
+
+
 
 # # get the standard deviation of specific period
 # print (returns.loc['2019-01-01':].std()) 
 
+
+
+
+
+
+
+# the historical return
+# returns.plot()
+
+
+
+
+
+
+
+
+
+# # the density distribution of the Close
+# sns.distplot(df.xs(('socl','Close'),axis=1,level=('Stock_Name','Stock_INFO')),color='green',rug=True,bins=220)
+
 # # the density distribution of the return
-# sns.distplot(returns['o_Return'],color='green',bins=220) 
+# sns.distplot(returns['vox_Return'],color='green',rug=True,bins=220) 
 
-# # the historical Close price of stocks involved
-# df.xs(key="Close",axis=1,level='Stock_INFO').plot() 
 
-# # the grab method of multi index dataframe
-# print (df.xs(('o','Close'),axis=1,level=('Stock_Name','Stock_INFO')))
+
+
+
+
+
+# # the grab method of multi index dataframe, and display it with built-in function
+# df.xs(('vox','Close'),axis=1,level=('Stock_Name','Stock_INFO')).plot()
+
+
+
+
+
+
+
+
+# # the relationship of two columns of one dataframe #kind=scatter,hex,reg,kde
+# sns.jointplot(x='socl_Return',y='vox_Return',data=returns,kind='reg')
 
 # # show the correlationship of the value of different columns
 # sns.pairplot(returns,diag_kind="kde", markers="+")
 # sns.pairplot(returns)
+
+
+
+
+
+
 
 # # heatmap and clustermap must be corr() model
 # sns.heatmap(df.xs(key="Close",axis=1,level='Stock_INFO').corr())
 # sns.clustermap(df.xs(key="Close",axis=1,level='Stock_INFO').corr(),annot=True)
 
 
-# # window=30 the avg value of the Close 
-# plt.plot(df.index, df.xs(('O','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='o AVG')
-# plt.plot(df.index, df.xs(('BXP','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='bxp AVG')
-# plt.plot(df.index, df.xs(('ixp','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='ixp AVG')
-# plt.plot(df.index, df.xs(('VNQ','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='vnq AVG')
 
-plt.plot(df.index, df.xs(('vox','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='vox')
-plt.plot(df.index, df.xs(('socl','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='socl')
-plt.plot(df.index, df.xs(('ixp','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='ixp')
-# plt.plot(df.index, df.xs(('VNQ','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='VNQ')
+
+
+
+# # window=30 the avg value of the Close 
+# # the historical Close price of stocks involved
+# df.xs(key="Close",axis=1,level='Stock_INFO').plot() 
+# df.xs(key="Close",axis=1,level='Stock_INFO').rolling(window=30).mean().plot() 
+
+
+
+
+
+
+# # following is the function to call plt.plot, which is the same as built-in function
+# plt.plot(df.index, df.xs(('vox','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='vox AVG')
+# plt.plot(df.index, df.xs(('socl','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='socl AVG')
+# plt.plot(df.index, df.xs(('ixp','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='ixp AVG')
+# plt.plot(df.index, df.xs(('vox','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='vox')
+# plt.plot(df.index, df.xs(('socl','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='socl')
+# plt.plot(df.index, df.xs(('ixp','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='ixp')
+
+
 
 plt.legend()
 plt.show()
