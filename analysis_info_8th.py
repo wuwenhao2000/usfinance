@@ -13,7 +13,7 @@ from datetime import datetime
 # import datetime
 
 # beginning date of stock dataframe analysis
-date = '2010-01-01'
+date = '2000-01-01'
 
 
 stock_list = ['scho','vgsh','shv','bil','shy','near']
@@ -96,8 +96,8 @@ plt.plot(df.index, df.xs(('vgsh','Close'),axis=1,level=('Stock_Name','Stock_INFO
 plt.plot(df.index, df.xs(('shv','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='shv')
 
 plt.plot(df.index, df.xs(('bil','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='bil')
-plt.plot(df.index, df.xs(('shy','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='shy')
 plt.plot(df.index, df.xs(('near','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='near')
+plt.plot(df.index, df.xs(('shy','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='shy')
 
 
 # plt.plot(df.index, df.xs(('VNQ','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='VNQ')

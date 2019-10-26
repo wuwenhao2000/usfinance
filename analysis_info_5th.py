@@ -13,7 +13,7 @@ from datetime import datetime
 # import datetime
 
 # beginning date of stock dataframe analysis
-date = '2010-01-01'
+date = '2000-01-01'
 
 stock_list = ['ftxl','usd','xsd','soxx']
 
@@ -76,10 +76,10 @@ returns = (returns[1:]) # delete the fist row with NaN
 
 
 # # window=30 the avg value of the Close 
-# plt.plot(df.index, df.xs(('O','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='o AVG')
-# plt.plot(df.index, df.xs(('BXP','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='bxp AVG')
-# plt.plot(df.index, df.xs(('HCP','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='hcp AVG')
-# plt.plot(df.index, df.xs(('VNQ','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='vnq AVG')
+# plt.plot(df.index, df.xs(('ftxl','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='ftxl AVG')
+# plt.plot(df.index, df.xs(('usd','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='usd AVG')
+# plt.plot(df.index, df.xs(('xsd','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='xsd AVG')
+# plt.plot(df.index, df.xs(('soxx','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='soxx AVG')
 
 plt.plot(df.index, df.xs(('ftxl','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='ftxl')
 plt.plot(df.index, df.xs(('usd','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='usd')

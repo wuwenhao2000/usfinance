@@ -19,7 +19,7 @@ from datetime import datetime
 # import datetime
 
 # beginning date of stock dataframe analysis
-date = '2015-01-01'
+date = '2000-01-01'
 
 
 stock_list = ['vox','socl','ixp']
@@ -146,9 +146,9 @@ returns = (returns[1:]) # delete the fist row with NaN
 # plt.plot(df.index, df.xs(('vox','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='vox AVG')
 # plt.plot(df.index, df.xs(('socl','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='socl AVG')
 # plt.plot(df.index, df.xs(('ixp','Close'),axis=1,level=('Stock_Name','Stock_INFO')).rolling(window=30).mean(),label='ixp AVG')
-# plt.plot(df.index, df.xs(('vox','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='vox')
-# plt.plot(df.index, df.xs(('socl','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='socl')
-# plt.plot(df.index, df.xs(('ixp','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='ixp')
+plt.plot(df.index, df.xs(('vox','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='vox')
+plt.plot(df.index, df.xs(('socl','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='socl')
+plt.plot(df.index, df.xs(('ixp','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='ixp')
 
 
 
