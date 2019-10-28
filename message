@@ -1,6 +1,6 @@
 PE= price/earning The money needed to get 1 USD pure income
 PB= price/book The money needed to get 1 USD pure book
-05 SCHO
-35 IEF TLT
-15 O
-45 SE SNSR SKYY ACWI XSD
+05 [SCHO,SHY(add)]
+30 [IEF,TLT(add)]
+15 O(increase)
+50 SE [SNSR,FIVE(add)] SKYY(increase) [ACWI,VT(add)] [XSD,SOXX(add)] SOCL(add) QTUM(add)
