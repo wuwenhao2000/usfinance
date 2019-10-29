@@ -12,6 +12,11 @@ import time
 from datetime import timedelta
 from datetime import datetime
 tss1 = '2013-10-10 23:40:00'
+
+# abc = ['a','b','c']
+# for one in abc:
+#   str(one) = one+'ccc'
+#   print (one)
 # dt = datetime.now()
 # dt = dt.replace(year=dt.year-3)
 # print (dt)
