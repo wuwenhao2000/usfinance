@@ -4,5 +4,24 @@ PB= price/book The money needed to get 1 USD pure book
 30 [IEF,TLT(add)]
 20 O(increase)
 45 SE [SNSR,FIVE(add)] SKYY(increase) [ACWI] [XSD,SOXX(add)] SOCL(add) QTUM(add)
+<<<<<<< HEAD
 
 not exist VT ign
+=======
+ign?
+VT(add)? ______should be purchased
+
+add additional aomunt ————
+FIVE SKYY SOXX SHY IEF,TLT QTUM
+
++++++++++++++++++++++
+0, IAU
+1, ++ VT
+2, SNSR FIVE(hold?)
+3, XSD SOXX(drop?)
+4, ++ VOO
+5, SCHO SHY(hold?)
+6, IEF TLT
+7, VOX
+8, QTUM
+>>>>>>> 4ed6aa6c9b350747e110e7111e5abac5ec15f472
