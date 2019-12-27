@@ -1,26 +1,17 @@
 PE= price/earning The money needed to get 1 USD pure income
 PB= price/book The money needed to get 1 USD pure book
-05 [SCHO,SHY(add)]
-30 [IEF,TLT(add)]
-20 O(increase)
-45 SE [SNSR,FIVE(add)] SKYY(increase) [ACWI] [XSD,SOXX(add)] SOCL(add) QTUM(add)
-<<<<<<< HEAD
+05 SCHO
+30 IEF,TLT
+20 O VNQ
+45 SE SNSR SKYY ACWI XSD USD VOX SOCL QTUM PPA
 
-not exist VT ign
-=======
-ign?
-VT(add)? ______should be purchased
-
-add additional aomunt ————
-FIVE SKYY SOXX SHY IEF,TLT QTUM
-
-+++++++++++++++++++++
-0, IAU
-1, ++ VT
-2, SNSR FIVE(hold?)
-3, XSD SOXX(drop?)
-4, ++ VOO
-5, SCHO SHY(hold?)
-6, IEF TLT
-7, VOX
-8, QTUM
+SE 39 247
+SNSR 23 48
+SKYY 61 25
+ACWI 79 27
+XSD 106 66
+USD 62 112
+VOX 94 29
+SOCL 34 26
+QTUM 29 47
+PPA 68 40
