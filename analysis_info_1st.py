@@ -16,28 +16,28 @@ from datetime import datetime
 date = '2010-01-01'
 
 
-stock_list = ['O','BXP','HCP','VNQ']
+stock_list = ['O','BXP','VNQ']
 
 # get the stock history from .xlsx file
 df_O = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='o',b=time.strftime("%Y%m%d", time.localtime())))
 df_BXP = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='bxp',b=time.strftime("%Y%m%d", time.localtime())))
-df_HCP = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='hcp',b=time.strftime("%Y%m%d", time.localtime())))
+# df_HCP = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='hcp',b=time.strftime("%Y%m%d", time.localtime())))
 df_VNQ = pd.read_excel('stock/{a}/{a}_{b}.xlsx'.format(a='vnq',b=time.strftime("%Y%m%d", time.localtime())))
 
 # get the beginning time_line
 df_O = df_O[df_O['Date']>=date]
 df_BXP = df_BXP[df_BXP['Date']>=date]
-df_HCP = df_HCP[df_HCP['Date']>=date]
+# df_HCP = df_HCP[df_HCP['Date']>=date]
 df_VNQ = df_VNQ[df_VNQ['Date']>=date]
 
 # set the index of dataframe
 df_O.set_index('Date',inplace=True)
 df_BXP.set_index('Date',inplace=True)
-df_HCP.set_index('Date',inplace=True)
+# df_HCP.set_index('Date',inplace=True)
 df_VNQ.set_index('Date',inplace=True)
 
 # concat multi dataframe into a new one
-df = pd.concat([df_O,df_BXP,df_HCP,df_VNQ],axis=1,keys=stock_list)
+df = pd.concat([df_O,df_BXP,df_VNQ],axis=1,keys=stock_list)
 
 # set the columns for dataframe
 df.columns.names = ['Stock_Name','Stock_INFO']
@@ -84,7 +84,7 @@ returns = (returns[1:]) # delete the fist row with NaN
 
 plt.plot(df.index, df.xs(('O','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='O')
 plt.plot(df.index, df.xs(('BXP','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='BXP')
-plt.plot(df.index, df.xs(('HCP','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='HCP')
+# plt.plot(df.index, df.xs(('HCP','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='HCP')
 plt.plot(df.index, df.xs(('VNQ','Close'),axis=1,level=('Stock_Name','Stock_INFO')),label='VNQ')
 
 plt.legend()
