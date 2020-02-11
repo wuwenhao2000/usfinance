@@ -13,7 +13,7 @@ from datetime import datetime
 # import datetime
 
 # beginning date of stock dataframe analysis
-date = '2010-01-01'
+date = '2019-01-01'
 
 
 stock_list = ['skyy','clou']
