@@ -1,14 +1,41 @@
 PE= price/earning The money needed to get 1 USD pure income
 PB= price/book The money needed to get 1 USD pure book
-05 IAU
-15 TLT
-20 O VNQ
-60 SE SKYY XSD SOCL PPA
 
 buy limit 挂单于现价之下买涨
 sell limit   挂单于现价之上卖空
 buy stop 挂单于现价之上追涨
 sell stop  挂单于现价之下追空
+
+################################################
+Sell Stop 股价抵达或低于stop value，触发卖出
+Sell Stop-Limit 股价抵达或低于stop value，并且高于limit value，才触发卖出
+Sell Limit 股价抵达或者高于Limite value，触发卖出
+Buy Stop 股价抵达或高于stop value，触发买入
+Buy Limit 股价抵达或者低于limit value，触发买入
+Buy Stop-Limit 股价抵达或高于stop value，并且低于limit value，才触发买入
+################################################
+
+Sell Stop Order 股价抵达或低于stop value，触发卖出
+A trader has bought a stock at $35 a share but wishes to risk no more than a $5 per share loss 
+on the trade. He places a sell stop order just below the $30 a share level, perhaps at $29.50. 
+If the market price falls to the $29.50 level, then the sell stop order is triggered, and the 
+trader's stock is sold at the next available market price.
+
+sell stop-limit 股价抵达或低于stop value，并且高于limit value，才触发卖出
+
+buy stop-limit 股价抵达或高于stop value，并且低于limit value，才触发买入
+For example, assume that Apple Inc. (AAPL) is trading at $170.00 and an investor wants to buy 
+the stock once it begins to show some serious upward momentum. The investor has put in a stop-limit 
+order to buy with the stop price at $180.00 and the limit price at $185.00. If the price of AAPL 
+moves above the $180.00 stop price, the order is activated and turns into a limit order. As long 
+as the order can be filled under $185.00, which is the limit price, the trade will be filled. 
+If the stock gaps above $185.00, the order will not be filled.
+
+Buy Stop Order 股价抵达或高于stop value，触发买入
+Consider the price movement of a stock ABC that is poised to break out of its trading range of 
+between $9 and $10. Let’s a say a trader bets on a price increase beyond that range for ABC and 
+places a buy stop order at $10.20. Once the stock hits that price, the order becomes a market 
+order and the trading system purchases stock at the next available price.
 
 Buy Limit Order 股价抵达或者低于limit value，触发买入
 If the trader places a buy order at $2.40 and the order is not triggered during the trading day, 
@@ -19,27 +46,3 @@ consider why the price gapped down so aggressively, and if they still want to ow
 
 Sell Limit Order 股价抵达或者高于Limite value，触发卖出
 sell limit order is an order to sell a security at a pre-specified price or higher.
-
-Buy Stop Order 股价抵达或高于stop value，触发买入
-Consider the price movement of a stock ABC that is poised to break out of its trading range of 
-between $9 and $10. Let’s a say a trader bets on a price increase beyond that range for ABC and 
-places a buy stop order at $10.20. Once the stock hits that price, the order becomes a market 
-order and the trading system purchases stock at the next available price.
-
-Sell Stop Order 股价抵达或低于stop value，触发卖出
-A trader has bought a stock at $35 a share but wishes to risk no more than a $5 per share loss 
-on the trade. He places a sell stop order just below the $30 a share level, perhaps at $29.50. 
-If the market price falls to the $29.50 level, then the sell stop order is triggered, and the 
-trader's stock is sold at the next available market price.
-
-
-buy stop-limit 股价抵达或高于stop value，并且低于limit value，才触发买入
-For example, assume that Apple Inc. (AAPL) is trading at $170.00 and an investor wants to buy 
-the stock once it begins to show some serious upward momentum. The investor has put in a stop-limit 
-order to buy with the stop price at $180.00 and the limit price at $185.00. If the price of AAPL 
-moves above the $180.00 stop price, the order is activated and turns into a limit order. As long 
-as the order can be filled under $185.00, which is the limit price, the trade will be filled. 
-If the stock gaps above $185.00, the order will not be filled.
-
-
-sell stop-limit 股价抵达或低于stop value，并且高于limit value，才触发卖出
